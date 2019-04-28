@@ -1,3 +1,33 @@
-<p>
-  orders works!
-</p>
+<div class="header-app">
+	<h1>Welcome to {{appName}}</h1>
+</div>
+<div class="buttons-lists">
+	<button mat-raised-button color="primary" class="myButton">
+		Patata / 2$
+	</button>
+	<form>
+		<table cellspacing="0">
+			<tr>
+				<td>
+					<mat-form-field>
+						<input matInput #orderNumber maxlength="3" placeholder="Order Number">
+					</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<mat-form-field>
+						<input matInput #orderNumber maxlength="13" placeholder="Customer">
+					</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button mat-raised-button color="primary" class="btn-send">
+						SEND
+					</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
