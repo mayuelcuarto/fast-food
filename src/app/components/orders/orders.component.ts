@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class OrdersComponent implements OnInit {
 
   constructor() { }
+  appName: string = 'Fast Food!';
 
   ngOnInit() {
   }
