@@ -9,8 +9,7 @@ import { FormComponent } from './components/form/form.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrdersListComponent } from './components/orders/orders-list/orders-list.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -25,12 +24,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
