@@ -15,7 +15,7 @@ export class OrdersComponent implements OnInit {
   	 	price: 4
   	},
   	{
-  		name: 'Humburger',
+  		name: 'Hamburger',
   	 	price: 8
   	},
   	{
@@ -37,7 +37,15 @@ export class OrdersComponent implements OnInit {
   	{
   		name: 'Coffe',
   	 	price: 2
-  	}
+  	},
+    {
+      name: 'Beer',
+       price: 2
+    },
+    {
+      name: 'Orange Juice',
+       price: 2
+    }
   ];
 
   appName: string = 'Fast Food!';
@@ -59,6 +67,13 @@ export class OrdersComponent implements OnInit {
   }
 
   onSubmit(){
-  	console.log(this.orderService.myForm.value);
+  	this.orderService.myForm.value.order = this.tempOrder;
+  	let data = this.orderService.myForm.value;
+  	data.totalOrder = this.totalOrder;
+  	// call service
+  	this.orderService.createOrder(data);
+  	this.tempOrder = [];
+  	this.totalOrder = 0;
+  	this.orderService.myForm.reset();
   }
 }
