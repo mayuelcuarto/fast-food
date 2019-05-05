@@ -11,6 +11,12 @@ import { OrdersListComponent } from './components/orders/orders-list/orders-list
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { MaterialModule } from './material.module';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +30,10 @@ import { MaterialModule } from './material.module';
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.configFirebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
