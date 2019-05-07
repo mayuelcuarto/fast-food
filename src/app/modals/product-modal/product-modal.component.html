@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{ !this.data.selectedProduct.id ? 'New Product' : 'Update Product' }}</h1>
+<form #formProduct="ngForm" (ngSubmit)="onSaveProduct(formProduct)">
+<div mat-dialog-content>
+  <p>Set the name and price for a new Product</p>
+  <input type="hidden" name="id" [(ngModel)]="this.data.selectedProduct.id">
+  <mat-form-field>
+    <input matInput [(ngModel)]="this.data.selectedProduct.name" name="name" placeholder="Name">
+  </mat-form-field>
+  <mat-form-field>
+  	<input matInput [(ngModel)]="this.data.selectedProduct.price" name="price" placeholder="Price">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button #btnClose mat-button (click)="onNoClick()" >Close</button>
+  <button type="submit" mat-button cdkFocusInitial>Save</button>
+</div>
+</form>
