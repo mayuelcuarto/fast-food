@@ -8,7 +8,7 @@ import { OrdersService } from '../../shared/orders.service';
 })
 export class OrdersComponent implements OnInit {
 
-  constructor(private orderService: OrdersService) { }
+  constructor(public orderService: OrdersService) { }
   products = [
   	{
   		name: 'Chips',
