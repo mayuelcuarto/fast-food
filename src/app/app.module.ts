@@ -16,6 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { ProductsComponent } from './components/products/products.component';
+import { EmployesComponent } from './components/employes/employes.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     FormComponent,
     OrdersComponent,
     OrdersListComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    ProductsComponent,
+    EmployesComponent
   ],
   imports: [
     BrowserAnimationsModule,
