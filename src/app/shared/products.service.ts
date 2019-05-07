@@ -34,7 +34,7 @@ export class ProductsService {
   	return this.productsCollection.doc(product.id).update(product);
   }
 
-  deleteOrder(id: string){
+  deleteProduct(id: string){
   	return this.productsCollection.doc(id).delete();
   }
 
