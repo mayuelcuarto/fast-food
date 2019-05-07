@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { OrderInterface } from '../models/order';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
-	private ordersCollection: AngularFirestoreCollection<any>;
-	orders: Observable<any[]>;
 
-  constructor(private readonly afs: AngularFirestore) {
-  	this.ordersCollection = afs.collection<any>('orders');
-  	this.orders = this.ordersCollection.snapshotChanges().pipe(map(
-  		actions => actions.map(a => {
-  			const data = a.payload.doc.data() as any;
-  			const id = a.payload.doc.id;
-  			return {id, ...data};
-  		})
-  		));
-   }
+  constructor(private readonly afs: AngularFirestore) {}
+	private ordersCollection: AngularFirestoreCollection<OrderInterface>;
+  private orders: Observable<OrderInterface[]>;
+  private orderDoc: AngularFirestoreDocument<OrderInterface>;
+  private order: Observable<OrderInterface>;
+  public selectedOrder: OrderInterface = {
+    id: null
+  };
 
   myForm = new FormGroup ({
   	customerName: new FormControl(''),
@@ -30,10 +27,18 @@ export class OrdersService {
   });
 
   getOrders(){
-  	return this.orders;
+  	this.ordersCollection = this.afs.collection<OrderInterface>('orders');
+    return this.orders = this.ordersCollection.snapshotChanges()
+    .pipe(map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data() as OrderInterface;
+        data.id = action.payload.doc.id;
+        return data;
+      });
+    }));
   }
 
-  updateOrder(order: any){
+  updateOrder(order: OrderInterface){
   	return this.ordersCollection.doc(order.id).update(order);
   }
 
@@ -41,7 +46,7 @@ export class OrdersService {
   	return this.ordersCollection.doc(id).delete();
   }
 
-  createOrder(order: any){
+  createOrder(order: OrderInterface){
   	return this.ordersCollection.add(order);
   }
 }
