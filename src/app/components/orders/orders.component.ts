@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../../shared/orders.service';
+import { ProductsService } from '../../shared/products.service';
 
 @Component({
   selector: 'app-orders',
@@ -8,8 +9,9 @@ import { OrdersService } from '../../shared/orders.service';
 })
 export class OrdersComponent implements OnInit {
 
-  constructor(private orderService: OrdersService) { }
-  products = [
+  constructor(public orderService: OrdersService, public productService: ProductsService) { }
+  
+  /*products = [
   	{
   		name: 'Chips',
   	 	price: 4
@@ -46,18 +48,21 @@ export class OrdersComponent implements OnInit {
       name: 'Orange Juice',
        price: 2
     }
-  ];
+  ];*/
 
+  products = [];
+  orders = [];
   appName: string = 'Fast Food!';
-  totalOrder = 0;
+  totalOrder: number = 0;
   tempOrder = [];
 
   ngOnInit() {
+    this.getAllProducts();
   }
 
   onAddProduct(product){
   	console.log(product);
-  	this.totalOrder = (this.totalOrder + product.price);
+  	this.totalOrder = (this.totalOrder + parseInt(product.price));
   	this.tempOrder.push(product.name);
   }
 
@@ -75,5 +80,11 @@ export class OrdersComponent implements OnInit {
   	this.tempOrder = [];
   	this.totalOrder = 0;
   	this.orderService.myForm.reset();
+  }
+
+  getAllProducts(){
+    this.productService.getProducts().subscribe(res => {
+      this.products = res;
+    });
   }
 }
