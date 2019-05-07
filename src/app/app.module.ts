@@ -11,6 +11,8 @@ import { OrdersListComponent } from './components/orders/orders-list/orders-list
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { MaterialModule } from './material.module';
 
+import { FormsModule } from '@angular/forms';
+
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from '../environments/environment';
@@ -18,6 +20,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ProductsComponent } from './components/products/products.component';
 import { EmployesComponent } from './components/employes/employes.component';
+import { ProductModalComponent } from './modals/product-modal/product-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { EmployesComponent } from './components/employes/employes.component';
     OrdersListComponent,
     MainMenuComponent,
     ProductsComponent,
-    EmployesComponent
+    EmployesComponent,
+    ProductModalComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -37,8 +41,10 @@ import { EmployesComponent } from './components/employes/employes.component';
     MaterialModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.configFirebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule
   ],
+  entryComponents: [ProductModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
